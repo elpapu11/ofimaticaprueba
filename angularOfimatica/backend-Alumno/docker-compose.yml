@@ -1,0 +1,40 @@
+version: '3.1'
+
+services:
+  mysql:
+    container_name: mysqlFirst
+    image: mysql:8.0.26
+    environment:
+      - MYSQL_ROOT_PASSWORD=secreto
+      - MYSQL_DATABASE=BDPersona
+    ports:
+      - 3310:3306
+    volumes:
+      - mysqlVolume:/var/lib/mysql
+    networks:
+      - OfimaticaFinalNetwork
+    restart: unless-stopped
+      
+  spring:
+    image: zoso11/backend-bib:2
+    ports:
+      - 8075:8080
+    networks:
+      - OfimaticaFinalNetwork
+    depends_on:
+      - mysql
+    restart: unless-stopped
+      
+volumes:
+  mysqlVolume:
+  
+networks:
+  OfimaticaFinalNetwork:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.50.0.0/16
+      
+      
+  
+    

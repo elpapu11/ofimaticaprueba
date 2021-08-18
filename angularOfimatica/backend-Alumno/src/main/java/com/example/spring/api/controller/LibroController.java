@@ -13,34 +13,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.spring.api.model.Persona;
-import com.example.spring.api.service.PersonaService;
+import com.example.spring.api.model.Libro;
+import com.example.spring.api.service.LibroService;
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping({"/personas"})
-public class Controller {
-	@Autowired
-	PersonaService service;
+@RequestMapping({"/libros"})
+public class LibroController {
+	@Autowired	
+	LibroService service;
 	
 	@GetMapping
-	public List<Persona> listar(){
+	public List<Libro> listar(){
 		return service.listar();
 	}
 	@PostMapping
-	public Persona agregar(@RequestBody Persona p) {
+	public Libro agregar(@RequestBody Libro p) {
 		return service.add(p);
 	}
 	@GetMapping(path = {"/{id}"})
-	public Persona listarId(@PathVariable("id")int id) {
+	public Libro listarId(@PathVariable("id")int id) {
 		return service.listarId(id);
 	}
 	@PutMapping(path = {"/{id}"})
-	public Persona editar(@RequestBody Persona p, @PathVariable("id") int id) {
+	public Libro editar(@RequestBody Libro p, @PathVariable("id") int id) {
 		p.setId(id);
 		return service.edit(p);
 	}
 	@DeleteMapping(path = {"/{id}"})
-	public Persona delete(@PathVariable("id") int id) {
+	public Libro delete(@PathVariable("id") int id) {
 		return service.delete(id);
 	}
 }
