@@ -26,7 +26,7 @@ services:
     restart: unless-stopped
     
   frontend:
-    image: zoso11/frontend-bib:2
+    image: zoso11/frontend-bib:3
     ports:
       - 8050:80
     networks:
